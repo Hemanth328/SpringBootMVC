@@ -45,14 +45,22 @@ public class JobSeekerOpeartionsController {
 	@PostMapping("/register")
 	public String registerJSByUploadingFiles(@ModelAttribute("js") JobSeekerData jsData, Map<String, Object> map)throws Exception {
 		
+		System.out.println("JobSeekerOpeartionsController.registerJSByUploadingFiles()");
+		
 		//get Upload folder location from properties file
 		String storeLocation = env.getProperty("upload.store");
+		
+		System.out.println("Store Location");
 		
 		//if that is not available then create it
 		File file = new File(storeLocation);
 		
+		System.out.println("After collecting Store location");
+		
 		if(!file.exists())
 			file.mkdir();
+		
+		System.out.println("");
 		
 		//get InputStream representing the upload files content
 		MultipartFile resumeFile = jsData.getResume();
